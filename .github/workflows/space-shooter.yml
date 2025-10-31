@@ -1,10 +1,4 @@
-- name: Generate Space Shooter SVG
-  run: |
-    mkdir -p dist
-    pwd
-    ls -R
-    node ./scripts/generate-space-shooter.js
-
+name: Generate Space Shooter Animation
 
 on:
   schedule:
@@ -26,6 +20,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install canvas
+
+      - name: Debug file structure
+        run: |
+          pwd
+          ls -R
 
       - name: Generate Space Shooter SVG
         run: |
