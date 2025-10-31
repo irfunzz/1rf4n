@@ -1,0 +1,35 @@
+name: Generate Space Shooter Animation
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"  # update setiap 12 jam
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install canvas
+
+      - name: Generate Space Shooter SVG
+        run: |
+          mkdir -p dist
+          node scripts/generate-space-shooter.js
+
+      - name: Deploy to output branch
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
