@@ -1,4 +1,10 @@
-name: Generate Space Shooter Animation
+- name: Generate Space Shooter SVG
+  run: |
+    mkdir -p dist
+    pwd
+    ls -R
+    node ./scripts/generate-space-shooter.js
+
 
 on:
   schedule:
