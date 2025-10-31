@@ -30,7 +30,7 @@ jobs:
           outputs: |
             dist/snake-dark.svg?palette=github-dark
             dist/snake-light.svg?palette=github-light
-            dist/snake-transparent.svg?color_snake=#ff4b4b&color_dots=#64ffda,#80cbc4,#b0bec5,#cfd8dc
+            dist/snake-transparent.svg?color_snake=#2196f3&color_dots=#64b5f6,#90caf9,#bbdefb,#e3f2fd
 
       # 3️⃣ Push hasil ke branch `output`
       - name: Push generated snake to output branch
