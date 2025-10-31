@@ -1,24 +1,39 @@
 name: Generate Snake Animation
 
 on:
+  # Jalankan otomatis setiap 6 jam
   schedule:
-    - cron: "0 */12 * * *"  # update tiap 12 jam
+    - cron: "0 */6 * * *"
+  # Jalankan tiap kali kamu push ke main
+  push:
+    branches:
+      - main
+  # Bisa dijalankan manual
   workflow_dispatch:
 
 jobs:
-  build:
+  generate:
+    name: Generate Snake
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v3
 
-      - name: Generate the snake animation
+    steps:
+      # 1️⃣ Checkout repo profil kamu
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          repository: irfunzz/1rf4n
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: main
+
+      # 2️⃣ Generate snake animation
+      - name: Generate snake.svg
         uses: Platane/snk@v3
         with:
-          github_user_name: irfunzz  # ganti dengan username kamu
+          github_user_name: irfunzz
           outputs: dist/snake.svg
 
-      - name: Push the generated snake.svg to the output branch
+      # 3️⃣ Push hasil ke branch `output`
+      - name: Push generated snake.svg to output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output
