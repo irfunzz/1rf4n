@@ -24,7 +24,7 @@ jobs:
       - name: Generate Space Shooter SVG
         run: |
           mkdir -p dist
-          node scripts/generate-space-shooter.js
+          node /scripts/generate-space-shooter.js
 
       - name: Deploy to output branch
         uses: crazy-max/ghaction-github-pages@v3
